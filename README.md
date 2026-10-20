@@ -19,15 +19,17 @@ Built for the ACM Web Dev induction (Project 1A: GitHub Profile & Repo Explorer)
 - Error handling for unknown usernames (404), GitHub rate limits (403 / 429) and any other failed request
 - Skips repeat searches for the user already shown; a failed search can be retried
 - Optional personal access token for local development (raises the limit from 60 to 5,000 requests per hour)
+- Brutalist-style design with bold borders, hard shadows and bright colours
+- Responsive layout for desktop and phones
 
 ### Planned
-- Styled, responsive UI
 - Showing error messages on the page
 - Pinned profiles with notes, saved in localStorage
 
 ## Tech stack
 - React 19
 - Vite
+- Plain CSS (no UI library)
 - GitHub REST API (no backend; all requests are made from the browser)
 
 ## Project structure
@@ -38,6 +40,8 @@ src/
     SearchBar.jsx     search input + button; fetches the user and repos, reports the rate limit
     UserProfile.jsx   profile card, sortable top-repositories table, health scores
   App.jsx             holds the user, repo and rate-limit state and passes it between components
+  App.css             page layout and component styles
+  index.css           theme colours and fonts
 ```
 
 ## Running locally
@@ -66,4 +70,4 @@ Without a token, GitHub allows 60 requests per hour per IP. To raise that while 
 
 ## AI usage
 
-AI (Claude) was used mainly for debugging errors, and for a few concept explanations along the way. Commits that include AI-written content are tagged `[AI-Assisted]`, and the prompts are logged in `AI_TRACES.md`.
+AI (Claude) was used mainly for debugging errors, for a few concept explanations along the way, and for the styling (CSS). Commits that include AI-written content are tagged `[AI-Assisted]`, and the prompts are logged in `AI_TRACES.md`.

@@ -62,6 +62,15 @@ export default function SearchBar({ onFound1, onFound2, onFound3 }) {
     console.log("Button clicked");
   };
 
+  // const searchElement = document.getElementById("searchBar");
+  // searchElement.addEventListener("focus", () => {
+  //   document.addEventListener("keydown", function (event) {
+  //     if (event.key === "Enter") {
+  //       onButtonClick();
+  //     }
+  //   });
+  // });
+
   // useEffect(() => {
   //   async function communicate() {
   //     let response = await fetch(`https://api.github.com/users/${user}`);
@@ -77,16 +86,19 @@ export default function SearchBar({ onFound1, onFound2, onFound3 }) {
       <input
         id="searchBar"
         type="search"
-        placeholder="Search"
+        placeholder="Enter a GitHub username"
         value={username}
         onChange={onChangeText}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") onButtonClick();
+        }}
       />
       <button
         className="btn btn-main"
         style={{ marginLeft: "10px" }}
         onClick={onButtonClick}
       >
-        CLICK
+        Search
       </button>
     </div>
   );

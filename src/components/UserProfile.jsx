@@ -24,7 +24,7 @@ export default function UserProfile({ user, userRepo }) {
     ? diffSorts[sortIndex].toReversed()
     : diffSorts[sortIndex];
   return (
-    <div>
+    <div className="results">
       <article className="github-profile">
         <header>
           <img
@@ -52,6 +52,7 @@ export default function UserProfile({ user, userRepo }) {
         </dl>
       </article>
 
+      <section className="repos">
       <h2>TOP REPOSITORIES - BASED ON {msg1[sortIndex]}</h2>
       <table className="repo-data">
         <thead>
@@ -88,7 +89,9 @@ export default function UserProfile({ user, userRepo }) {
                   </td>
                 )}
 
-                <td>{healthScore}</td>
+                <td>
+                  <span className="score">{healthScore}</span>
+                </td>
               </tr>
             );
           })}
@@ -96,7 +99,7 @@ export default function UserProfile({ user, userRepo }) {
       </table>
 
       <button className="btn btn-toggle" onClick={onToggleClick}>
-        TOGGLE
+        Toggle sort
       </button>
 
       <button
@@ -104,8 +107,9 @@ export default function UserProfile({ user, userRepo }) {
         style={{ marginLeft: "10px" }}
         onClick={sortClick}
       >
-        SORT CHANGE
+        Reverse order
       </button>
+      </section>
     </div>
   );
 }

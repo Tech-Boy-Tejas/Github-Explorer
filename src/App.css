@@ -1,3 +1,50 @@
+.pinned {
+  position: relative;
+  display: inline-block;
+  margin-top: 16px;
+  margin-left: 12px;
+}
+
+.pinned-list {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  z-index: 20;
+  min-width: 220px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  transform: translateX(-50%);
+  border: var(--border-width) solid var(--border-color);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.pinned-list li {
+  padding: 8px 10px;
+  color: var(--muted);
+}
+
+.pinned-list li:has(button) {
+  padding: 0;
+}
+
+.pinned-list li button {
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.pinned-list li button:hover {
+  background: var(--surface-hover);
+}
+
 .app {
   min-height: 100vh;
   display: flex;
@@ -475,4 +522,9 @@
   .repo-data td:nth-child(5) {
     grid-area: score;
   }
+}
+
+.btn-bookmark {
+  width: 100%;
+  margin-top: 20px;
 }

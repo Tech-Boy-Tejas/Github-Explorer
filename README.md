@@ -8,18 +8,22 @@ Built for the ACM Web Dev induction (Project 1A: GitHub Profile & Repo Explorer)
 
 ### Done
 - Search for a GitHub user by username
-- Fetches the user's profile (`/users/{username}`) and public repositories (`/users/{username}/repos`) when the search button is clicked
-- Error handling for:
-  - unknown usernames (404)
-  - GitHub rate limits (403 / 429)
-  - any other failed request
+- Profile card: avatar, name, username, bio, follower and following counts
+- Top 5 repositories in a table, with:
+  - a toggle between sorting by **stars** and by **most recent push**
+  - a button to reverse the sort order
+  - the star count or the last push date, depending on the sort
+- Repo health score (0 to 100) for each repository:
+  `stars × 2 + forks × 3 − open issues × 1.5`, clamped between 0 and 100
+- Live API rate-limit counter, read from GitHub's `x-ratelimit-remaining` response header
+- Error handling for unknown usernames (404), GitHub rate limits (403 / 429) and any other failed request
 - Skips repeat searches for the user already shown; a failed search can be retried
 - Optional personal access token for local development (raises the limit from 60 to 5,000 requests per hour)
 
-### In progress
-- Profile card: avatar, name, bio, follower and following counts
-- Repository list, sorted by stars or by last update
-- Showing loading and error messages on the page
+### Planned
+- Styled, responsive UI
+- Showing error messages on the page
+- Pinned profiles with notes, saved in localStorage
 
 ## Tech stack
 - React 19
@@ -31,9 +35,9 @@ Built for the ACM Web Dev induction (Project 1A: GitHub Profile & Repo Explorer)
 ```
 src/
   components/
-    SearchBar.jsx     search input + button, fetches the user and repos
-    UserProfile.jsx   displays the fetched user's profile
-  App.jsx             holds the user state and passes it between components
+    SearchBar.jsx     search input + button; fetches the user and repos, reports the rate limit
+    UserProfile.jsx   profile card, sortable top-repositories table, health scores
+  App.jsx             holds the user, repo and rate-limit state and passes it between components
 ```
 
 ## Running locally
@@ -59,3 +63,7 @@ Without a token, GitHub allows 60 requests per hour per IP. To raise that while 
 3. Restart `npm run dev`.
 
 `.env.local` is git-ignored, so the token is never committed. The app works without it.
+
+## AI usage
+
+AI (Claude) was used mainly for debugging errors, and for a few concept explanations along the way. Commits that include AI-written content are tagged `[AI-Assisted]`, and the prompts are logged in `AI_TRACES.md`.

@@ -7,7 +7,7 @@ Built for the ACM Web Dev induction (Project 1A: GitHub Profile & Repo Explorer)
 ## Features
 
 ### Done
-- Search for a GitHub user by username
+- Search for a GitHub user by username, with the Search button or the Enter key
 - Profile card: avatar, name, username, bio, follower and following counts
 - Top 5 repositories in a table, with:
   - a toggle between sorting by **stars** and by **most recent push**
@@ -19,12 +19,18 @@ Built for the ACM Web Dev induction (Project 1A: GitHub Profile & Repo Explorer)
 - Error handling for unknown usernames (404), GitHub rate limits (403 / 429) and any other failed request
 - Skips repeat searches for the user already shown; a failed search can be retried
 - Optional personal access token for local development (raises the limit from 60 to 5,000 requests per hour)
+- Bookmark up to 5 profiles, saved in localStorage with their repositories; clicking Bookmark again on a saved profile removes it
+- Pinned profiles dropdown to reopen any saved profile instantly, without a new API call
 - Brutalist-style design with bold borders, hard shadows and bright colours
 - Responsive layout for desktop and phones
 
+### Optional tasks completed
+- Repo health score
+- API rate-limit counter
+- Pinned (bookmarked) profiles saved in localStorage
+
 ### Planned
 - Showing error messages on the page
-- Pinned profiles with notes, saved in localStorage
 
 ## Tech stack
 - React 19
@@ -38,8 +44,8 @@ Built for the ACM Web Dev induction (Project 1A: GitHub Profile & Repo Explorer)
 src/
   components/
     SearchBar.jsx     search input + button; fetches the user and repos, reports the rate limit
-    UserProfile.jsx   profile card, sortable top-repositories table, health scores
-  App.jsx             holds the user, repo and rate-limit state and passes it between components
+    UserProfile.jsx   profile card, bookmark button, sortable top-repositories table, health scores
+  App.jsx             holds the user, repo and rate-limit state, and the pinned profiles dropdown
   App.css             page layout and component styles
   index.css           theme colours and fonts
 ```
@@ -67,7 +73,3 @@ Without a token, GitHub allows 60 requests per hour per IP. To raise that while 
 3. Restart `npm run dev`.
 
 `.env.local` is git-ignored, so the token is never committed. The app works without it.
-
-## AI usage
-
-AI (Claude) was used mainly for debugging errors, for a few concept explanations along the way, and for the styling (CSS). Commits that include AI-written content are tagged `[AI-Assisted]`, and the prompts are logged in `AI_TRACES.md`.

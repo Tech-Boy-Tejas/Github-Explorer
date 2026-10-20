@@ -4,6 +4,8 @@ Search any GitHub user to see their profile and top repositories. Built with Rea
 
 Built for the ACM Web Dev induction (Project 1A: GitHub Profile & Repo Explorer).
 
+**Live demo:** https://github-explorer-xi-blond.vercel.app/
+
 ## Features
 
 ### Done

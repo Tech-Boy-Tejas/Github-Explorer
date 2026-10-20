@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 
-export default function SearchBar({ onFound }) {
+export default function SearchBar({ onFound1, onFound2, onFound3 }) {
   let [prevUsername, setPrevUsername] = useState("");
   let [username, setUsername] = useState("");
 
@@ -15,6 +15,7 @@ export default function SearchBar({ onFound }) {
         `https://api.github.com/users/${username}`,
         options,
       );
+      onFound3(response1.headers.get("x-ratelimit-remaining"));
 
       if (response1.status === 404) throw new Error("User not found");
       if (response1.status === 403 || response1.status === 429)
@@ -26,6 +27,7 @@ export default function SearchBar({ onFound }) {
         `https://api.github.com/users/${username}/repos`,
         options,
       );
+      onFound3(response2.headers.get("x-ratelimit-remaining"));
 
       if (response2.status === 404) throw new Error("Data not found");
       if (response2.status === 403 || response2.status === 429)
@@ -36,7 +38,8 @@ export default function SearchBar({ onFound }) {
       const user = await response1.json();
       const userProfile = await response2.json();
 
-      onFound(user);
+      onFound1(user);
+      onFound2(userProfile);
       setPrevUsername(username);
 
       console.log(user);
@@ -51,7 +54,9 @@ export default function SearchBar({ onFound }) {
   };
 
   const onButtonClick = () => {
-    if (!(prevUsername.trim().toLowerCase() == username.trim().toLowerCase())) {
+    if (
+      !(prevUsername.trim().toLowerCase() === username.trim().toLowerCase())
+    ) {
       apiCall();
     }
     console.log("Button clicked");

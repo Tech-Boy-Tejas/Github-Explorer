@@ -5,11 +5,18 @@ import UserProfile from "./components/UserProfile";
 
 function App() {
   let [user, setUser] = useState(null);
+  let [userRepo, setUserRepo] = useState(null);
+  let [remaining, setRemaining] = useState(null);
 
   return (
     <>
-      <SearchBar onFound={setUser} />
-      {user && <UserProfile user={user} />}
+      <SearchBar
+        onFound1={setUser}
+        onFound2={setUserRepo}
+        onFound3={setRemaining}
+      />
+      {remaining !== null && <p>API calls left: {remaining}</p>}
+      {user && <UserProfile user={user} userRepo={userRepo} />}
     </>
   );
 }
